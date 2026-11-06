@@ -156,10 +156,38 @@
             border-radius: 32px;
             padding: 3rem;
             backdrop-filter: blur(40px);
+            position: relative;
+            overflow: hidden;
             box-shadow:
                 0 25px 50px -12px rgba(0, 0, 0, 0.5),
                 0 0 0 1px rgba(255, 255, 255, 0.05),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: var(--card-y, 50%);
+            left: var(--card-x, 50%);
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(6, 182, 212, 0.1) 40%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .login-card:hover::before {
+            opacity: 1;
+        }
+
+        .login-card > * {
+            position: relative;
+            z-index: 1;
         }
 
         /* Logo */
@@ -266,6 +294,26 @@
             border-color: rgba(255, 255, 255, 0.15);
         }
 
+        /* Suppress default browser eye icon in Windows/Edge/Chrome */
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear {
+            display: none !important;
+            width: 0;
+            height: 0;
+        }
+        input[type="password"]::-webkit-contacts-auto-fill-button,
+        input[type="password"]::-webkit-credentials-auto-fill-button {
+            visibility: hidden;
+            display: none !important;
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+        }
+
+        #password {
+            padding-right: 3.2rem;
+        }
+
         /* Password Toggle */
         .password-group {
             position: relative;
@@ -279,9 +327,16 @@
             background: none;
             border: none;
             color: var(--text-secondary);
-            cursor: pointer;
+            cursor: none;
             padding: 0.5rem;
             transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .password-toggle svg {
+            display: block;
         }
 
         .password-toggle:hover {
@@ -335,10 +390,27 @@
             color: white;
             font-size: 1rem;
             font-weight: 600;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
             margin-top: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
         }
 
         .submit-btn:hover {
@@ -384,7 +456,7 @@
             color: var(--text-primary);
             font-size: 0.9rem;
             font-weight: 500;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
@@ -425,6 +497,55 @@
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             animation: floatShape 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+        }
+
+        .cursor.hover {
+            width: 40px;
+            height: 40px;
+            background: rgba(99, 102, 241, 0.2);
+            border-color: var(--accent);
+        }
+
+        /* Cursor Trail */
+        .trail {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 99998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Magnetic effect for buttons */
+        .magnetic {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .shape-1 {
@@ -478,6 +599,10 @@
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
     <!-- Background -->
     <div class="bg-animation">
         <div class="bg-gradient-orb orb-1"></div>
@@ -671,6 +796,140 @@
         function socialLogin(provider) {
             alert(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login is for UI demo only!`);
         }
+
+        // ====== Custom Cursor Effects ======
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let dotX = 0, dotY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Smooth cursor animation with physics
+        function animateCursor() {
+            // Outer ring - slower, springy follow
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.left = cursorX - 10 + 'px';
+            cursor.style.top = cursorY - 10 + 'px';
+
+            // Inner dot - faster follow
+            dotX += (mouseX - dotX) * 0.35;
+            dotY += (mouseY - dotY) * 0.35;
+            cursorDot.style.left = dotX - 3 + 'px';
+            cursorDot.style.top = dotY - 3 + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Cursor trail particles
+        const trailParticles = [];
+        const maxTrailParticles = 20;
+
+        function createTrailParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'trail';
+            document.body.appendChild(particle);
+            return {
+                el: particle,
+                x: x,
+                y: y,
+                size: Math.random() * 8 + 4,
+                speedX: (Math.random() - 0.5) * 2,
+                speedY: (Math.random() - 0.5) * 2,
+                life: 1,
+                decay: Math.random() * 0.03 + 0.02
+            };
+        }
+
+        function updateTrail() {
+            // Add new particle at mouse position
+            if (trailParticles.length < maxTrailParticles) {
+                trailParticles.push(createTrailParticle(mouseX, mouseY));
+            }
+
+            // Update existing particles
+            for (let i = trailParticles.length - 1; i >= 0; i--) {
+                const p = trailParticles[i];
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.life -= p.decay;
+
+                p.el.style.left = p.x - p.size / 2 + 'px';
+                p.el.style.top = p.y - p.size / 2 + 'px';
+                p.el.style.width = p.size * p.life + 'px';
+                p.el.style.height = p.size * p.life + 'px';
+                p.el.style.opacity = p.life * 0.8;
+
+                if (p.life <= 0) {
+                    p.el.remove();
+                    trailParticles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(updateTrail);
+        }
+        updateTrail();
+
+        // Hover effects
+        const hoverElements = document.querySelectorAll('button, a, input, .social-btn');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // 3D Card Tilt Effect
+        const loginCard = document.querySelector('.login-card');
+        const loginContainer = document.querySelector('.login-container');
+
+        loginContainer.addEventListener('mousemove', (e) => {
+            const rect = loginCard.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+
+            loginCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            loginCard.style.setProperty('--card-x', x + 'px');
+            loginCard.style.setProperty('--card-y', y + 'px');
+        });
+
+        loginContainer.addEventListener('mouseleave', () => {
+            loginCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
+
+        // Click ripple effect
+        document.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: fixed;
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%);
+                pointer-events: none;
+                z-index: 99997;
+                transform: translate(-50%, -50%);
+            `;
+            document.body.appendChild(ripple);
+
+            ripple.animate([
+                { width: '0px', height: '0px', opacity: 1 },
+                { width: '150px', height: '150px', opacity: 0 }
+            ], {
+                duration: 600,
+                easing: 'ease-out'
+            }).onfinish = () => ripple.remove();
+        });
     </script>
 </body>
 </html>
