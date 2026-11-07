@@ -53,7 +53,7 @@
         .splash-orb-1 {
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+            background: radial-gradient(circle, #FFD60A 0%, transparent 70%);
             top: -100px;
             left: -100px;
             animation-delay: 0s;
@@ -62,7 +62,7 @@
         .splash-orb-2 {
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+            background: radial-gradient(circle, #FFFFFF 0%, transparent 70%);
             bottom: -150px;
             right: -150px;
             animation-delay: -3s;
@@ -71,7 +71,7 @@
         .splash-orb-3 {
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, #a855f7 0%, transparent 70%);
+            background: radial-gradient(circle, #FFC600 0%, transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -116,12 +116,12 @@
             width: 120px;
             height: 120px;
             margin: 0 auto 2rem;
-            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            background: linear-gradient(135deg, #FFD60A 0%, #FFC600 100%);
             border-radius: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 60px rgba(255, 214, 10, 0.6);
             transform: rotate(-3deg);
             position: relative;
         }
@@ -130,7 +130,7 @@
             content: '';
             position: absolute;
             inset: -3px;
-            background: linear-gradient(135deg, #6366f1, #06b6d4, #a855f7);
+            background: linear-gradient(135deg, #FFD60A, #FFFFFF, #FFC600);
             border-radius: 30px;
             z-index: -1;
             opacity: 0;
@@ -149,7 +149,7 @@
         .splash-logo-icon svg {
             width: 60px;
             height: 60px;
-            stroke: white;
+            stroke: #1A1A1A;
             stroke-width: 2.5;
             fill: none;
             animation: boltZap 2s ease infinite;
@@ -209,18 +209,18 @@
         .splash-button {
             padding: 1.2rem 3rem;
             font-size: 1.1rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFD60A 0%, #FFC600 100%);
             border: none;
             border-radius: 50px;
-            color: white;
+            color: #1A1A1A;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
             opacity: 0;
             animation: fadeInUp 1s ease 2s forwards;
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 40px rgba(255, 214, 10, 0.6);
         }
 
         .splash-button::before {
@@ -243,7 +243,7 @@
 
         .splash-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(99, 102, 241, 0.6);
+            box-shadow: 0 15px 50px rgba(255, 214, 10, 0.8);
         }
 
         .splash-button span {
@@ -278,19 +278,19 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --primary-light: #818cf8;
-            --primary-dark: #4f46e5;
-            --accent: #06b6d4;
-            --accent-light: #22d3ee;
-            --purple: #a855f7;
-            --pink: #ec4899;
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #FFD60A;
+            --primary-light: #FFE55C;
+            --primary-dark: #FFC600;
+            --accent: #FFFFFF;
+            --accent-light: #FFFEF7;
+            --purple: #FFB800;
+            --pink: #FFAA00;
+            --bg-dark: #1A1A1A;
+            --bg-card: rgba(255, 214, 10, 0.05);
+            --text-primary: #FFFFFF;
+            --text-secondary: #E0E0E0;
+            --glass: rgba(255, 214, 10, 0.08);
+            --glass-border: rgba(255, 214, 10, 0.2);
         }
 
         html {
@@ -299,7 +299,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
+            background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
             color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.6;
@@ -327,7 +327,7 @@
         .orb-1 {
             width: 600px;
             height: 600px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+            background: radial-gradient(circle, #FFD60A 0%, transparent 70%);
             top: -200px;
             left: -200px;
             animation-delay: 0s;
@@ -336,7 +336,7 @@
         .orb-2 {
             width: 500px;
             height: 500px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            background: radial-gradient(circle, #FFFFFF 0%, transparent 70%);
             bottom: -150px;
             right: -150px;
             animation-delay: -5s;
@@ -345,7 +345,7 @@
         .orb-3 {
             width: 400px;
             height: 400px;
-            background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+            background: radial-gradient(circle, #FFC600 0%, transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -386,15 +386,17 @@
             right: 0;
             z-index: 1000;
             padding: 1rem 2rem;
-            background: rgba(10, 10, 15, 0.8);
+            background: rgba(26, 26, 26, 0.9);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 2px solid var(--glass-border);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 214, 10, 0.1);
         }
 
         nav.scrolled {
             padding: 0.75rem 2rem;
-            background: rgba(10, 10, 15, 0.95);
+            background: rgba(26, 26, 26, 0.95);
+            border-bottom: 2px solid var(--primary);
         }
 
         .nav-container {
@@ -420,12 +422,12 @@
         .logo-icon {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, #FFD60A 0%, #FFC600 100%);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 2px 8px rgba(255, 214, 10, 0.5);
             transition: all 0.2s ease;
             transform: rotate(-2deg);
         }
@@ -433,14 +435,14 @@
         .logo-icon svg {
             width: 18px;
             height: 18px;
-            stroke: white;
+            stroke: #1A1A1A;
             stroke-width: 2.5;
             fill: none;
         }
 
         .logo:hover .logo-icon {
             transform: rotate(0deg) scale(1.05);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 4px 12px rgba(255, 214, 10, 0.7);
         }
 
         .nav-links {
@@ -465,8 +467,8 @@
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            height: 3px;
+            background: var(--primary);
             transition: width 0.3s ease;
             border-radius: 2px;
         }
@@ -501,23 +503,25 @@
         .btn-ghost {
             background: transparent;
             color: var(--text-primary);
-            border: 1px solid var(--glass-border);
+            border: 2px solid var(--primary);
         }
 
         .btn-ghost:hover {
-            background: var(--glass);
+            background: var(--primary);
+            color: var(--bg-dark);
             border-color: var(--primary);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, #FFD60A 0%, #FFC600 100%);
+            color: #1A1A1A;
+            box-shadow: 0 4px 20px rgba(255, 214, 10, 0.5);
+            font-weight: 700;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 8px 30px rgba(255, 214, 10, 0.7);
         }
 
         /* Hero Section */
@@ -558,32 +562,33 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 214, 10, 0.15);
+            border: 2px solid var(--primary);
             border-radius: 50px;
             font-size: 0.85rem;
-            color: var(--accent);
+            color: var(--primary);
             margin-bottom: 1.5rem;
             animation: slideUp 1s ease forwards;
             animation-delay: 0.2s;
             opacity: 0;
             transform: translateY(20px);
+            font-weight: 600;
         }
 
         .hero-badge span {
             width: 8px;
             height: 8px;
-            background: var(--accent);
+            background: var(--primary);
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
             0%, 100% {
-                box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4);
+                box-shadow: 0 0 0 0 rgba(255, 214, 10, 0.6);
             }
             50% {
-                box-shadow: 0 0 0 10px rgba(6, 182, 212, 0);
+                box-shadow: 0 0 0 10px rgba(255, 214, 10, 0);
             }
         }
 
@@ -600,10 +605,11 @@
         }
 
         .hero h1 .gradient-text {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--purple) 100%);
+            background: linear-gradient(135deg, #FFD60A 0%, #FFFFFF 50%, #FFE55C 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 40px rgba(255, 214, 10, 0.3);
         }
 
         .hero-description {
@@ -645,7 +651,7 @@
         }
 
         .stat-value span {
-            color: var(--accent);
+            color: var(--primary);
         }
 
         .stat-label {
@@ -712,7 +718,8 @@
 
         .dashboard-tab.active {
             background: var(--primary);
-            color: white;
+            color: #1A1A1A;
+            font-weight: 700;
         }
 
         .dashboard-cards {
@@ -747,9 +754,9 @@
             margin-bottom: 0.75rem;
         }
 
-        .stat-card-icon.purple { background: linear-gradient(135deg, var(--purple), var(--primary)); }
-        .stat-card-icon.cyan { background: linear-gradient(135deg, var(--accent), var(--primary)); }
-        .stat-card-icon.pink { background: linear-gradient(135deg, var(--pink), var(--purple)); }
+        .stat-card-icon.purple { background: linear-gradient(135deg, #FFB800, #FFD60A); }
+        .stat-card-icon.cyan { background: linear-gradient(135deg, #FFFFFF, #FFE55C); }
+        .stat-card-icon.pink { background: linear-gradient(135deg, #FFAA00, #FFC600); }
 
         .stat-card-value {
             font-size: 1.5rem;
@@ -795,8 +802,9 @@
 
         .chart-filter {
             font-size: 0.75rem;
-            color: var(--accent);
+            color: var(--primary);
             cursor: pointer;
+            font-weight: 600;
         }
 
         .chart-bars {
@@ -808,14 +816,14 @@
 
         .chart-bar {
             flex: 1;
-            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(180deg, #FFD60A 0%, #FFC600 100%);
             border-radius: 4px 4px 0 0;
             transition: all 0.3s ease;
             position: relative;
         }
 
         .chart-bar:hover {
-            background: linear-gradient(180deg, var(--accent) 0%, var(--primary) 100%);
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFD60A 100%);
             transform: scaleY(1.1);
             transform-origin: bottom;
         }
@@ -908,12 +916,13 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 214, 10, 0.15);
+            border: 2px solid var(--primary);
             border-radius: 50px;
             font-size: 0.85rem;
-            color: var(--primary-light);
+            color: var(--primary);
             margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .section-title {
@@ -954,20 +963,20 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, #FFD60A 0%, #FFFFFF 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: 0;
         }
 
         .feature-card:hover::before {
-            opacity: 0.05;
+            opacity: 0.08;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 20px 40px rgba(255, 214, 10, 0.3);
         }
 
         .feature-card > * {
@@ -984,8 +993,8 @@
             justify-content: center;
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            background: linear-gradient(135deg, #FFD60A 0%, #FFC600 100%);
+            box-shadow: 0 10px 30px rgba(255, 214, 10, 0.5);
             transition: transform 0.3s ease;
         }
 
@@ -1009,8 +1018,8 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--accent);
-            font-weight: 500;
+            color: var(--primary);
+            font-weight: 600;
             text-decoration: none;
             transition: gap 0.3s ease;
         }
@@ -1090,12 +1099,12 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--primary);
+            background: linear-gradient(180deg, #FFD60A 0%, #FFC600 100%);
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-light);
+            background: linear-gradient(180deg, #FFE55C 0%, #FFD60A 100%);
         }
     </style>
 </head>
@@ -1422,7 +1431,7 @@
             }
 
             draw() {
-                ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, ${this.opacity})`;
+                ctx.fillStyle = `rgba(255, 214, 10, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -1445,9 +1454,9 @@
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < 120) {
-                        const opacity = (1 - distance / 120) * 0.15;
-                        ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
-                        ctx.lineWidth = 0.5;
+                        const opacity = (1 - distance / 120) * 0.2;
+                        ctx.strokeStyle = `rgba(255, 214, 10, ${opacity})`;
+                        ctx.lineWidth = 0.8;
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
