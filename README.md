@@ -1,4 +1,4 @@
-# ✨ Brightloop — Subscription Management Demo
+# Brightloop — Subscription Management Demo
 
 > A smarter way to manage subscriptions, customers, and business operations.
 
